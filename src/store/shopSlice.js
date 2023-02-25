@@ -2,12 +2,11 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 export const fetchCatalog = createAsyncThunk(
   "catalog/fetchCatalog",
-  async function () {
-    // const state = getState();
-    // console.log("state", state);
-    // const params = state.queryParams;
-    // console.log("para", params);
-    const response = await fetch("https://fakestoreapi.com/products");
+  async (args, { getState }) => {
+    const { queryParams } = getState();
+    const response = await fetch(
+      `https://fakestoreapi.com/products${queryParams}`
+    );
     const data = await response.json();
     return data;
   }
@@ -46,6 +45,9 @@ export const slice = createSlice({
     removeItemFromBasket(state, action) {
       state.basket.splice(action.payload, 1);
     },
+    setQueryParams(state, action) {
+      state.queryParams = action.payload;
+    },
   },
   extraReducers: {
     [fetchCatalog.pending]: (state) => {
@@ -76,5 +78,9 @@ export const slice = createSlice({
 
 export default slice.reducer;
 
-export const { getCatalog, addItemToBasket, removeItemFromBasket } =
-  slice.actions;
+export const {
+  getCatalog,
+  addItemToBasket,
+  removeItemFromBasket,
+  setQueryParams,
+} = slice.actions;
