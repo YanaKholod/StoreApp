@@ -11,7 +11,8 @@ import ShopItem from "./ShopItem";
 // `;
 
 const Collection = () => {
-  const catalog = useSelector((state) => state.catalog);
+  const { catalog, queryParams } = useSelector((state) => state);
+  // const queryParams = useSelector();
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -19,6 +20,9 @@ const Collection = () => {
       dispatch(fetchCatalog());
     }
   }, []);
+  useEffect(() => {
+    dispatch(fetchCatalog());
+  }, [queryParams]);
 
   return (
     <div>
