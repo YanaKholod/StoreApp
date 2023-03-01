@@ -1,9 +1,10 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchCatalog } from "../../store/shopSlice";
-import ShopItem from "./ShopItem";
+import { addItemToBasket } from "../../store/shopSlice";
+import ShopItemCard from "./ShopItemCard";
 // import styled from "styled-components";
-
+import s from "../CompStyles.module.css";
 // const Styled = styled.h1`
 //   font-size: 1.5em;
 //   text-align: center;
@@ -12,7 +13,6 @@ import ShopItem from "./ShopItem";
 
 const Collection = () => {
   const { catalog, queryParams } = useSelector((state) => state);
-  // const queryParams = useSelector();
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -20,14 +20,41 @@ const Collection = () => {
       dispatch(fetchCatalog());
     }
   }, []);
+
   useEffect(() => {
     dispatch(fetchCatalog());
   }, [queryParams]);
 
+  const handleItemToBasket = (item) => {
+    dispatch(
+      addItemToBasket({
+        id: item.id,
+        title: item.title,
+        img: item.image,
+        category: item.category,
+        description: item.description,
+        price: item.price,
+      })
+    );
+  };
+
   return (
-    <div>
+    <div className={s.wrapper}>
       {catalog.map((item, index) => {
-        return <ShopItem key={index} item={item} />;
+        return (
+          <ShopItemCard
+            key={index}
+            item={{
+              id: item.id,
+              title: item.title,
+              img: item.image,
+              category: item.category,
+              description: item.description,
+              price: item.price,
+            }}
+            handleItemToBasket={handleItemToBasket}
+          />
+        );
       })}
     </div>
   );

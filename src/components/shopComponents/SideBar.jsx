@@ -12,14 +12,23 @@ const SideBar = () => {
     <div>
       <div>
         Categories:
-        <ul>
-          <button onClick={() => changeCategoryHandler("/category/jewelery")}>
-            Woman`s clothes
-          </button>
-          <li>Men`s clothes</li>
-          <li>Jewelry</li>
-          <li>Electronics</li>
-        </ul>
+        <button
+          onClick={() => changeCategoryHandler("/category/women's clothing")}
+        >
+          Women`s clothes
+        </button>
+        <button
+          onClick={() => changeCategoryHandler("/category/men's clothing")}
+        >
+          Men`s clothes
+        </button>
+        <button onClick={() => changeCategoryHandler("/category/jewelery")}>
+          Jewelry
+        </button>
+        <button onClick={() => changeCategoryHandler("/category/electronics")}>
+          Electronics
+        </button>
+        <button onClick={() => changeCategoryHandler("")}>Show all</button>
       </div>
     </div>
   );
