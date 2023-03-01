@@ -1,4 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { newClothes } from "../utils/mockData";
 
 export const fetchCatalog = createAsyncThunk(
   "catalog/fetchCatalog",
@@ -11,29 +12,25 @@ export const fetchCatalog = createAsyncThunk(
     return data;
   }
 );
-// export const fetchCatalogItem = createAsyncThunk(
-//   "item/fetchCatalogItem",
-//   async function (id) {
-//     const response = await fetch(`https://fakestoreapi.com/products/${id}`);
-//     const data = await response.json();
-//     return data;
-//   }
-// );
-// export const fetchCatalogByCategory = createAsyncThunk(
-//   "catalog/categoryCatalog",
-//   async function (category) {
-//     const response = await fetch(
-//       "https://fakestoreapi.com/products/" + category
-//     );
-//     const data = await response.json();
-//     return data;
-//   }
-// );
+export const fetchNewClothes = createAsyncThunk(
+  "catalog/fetchNewClothes",
+  async () => {
+    const response = new Promise((resolve, reject) => {
+      resolve(newClothes);
+      reject(new Error("ERROR"));
+    });
+    const data = await response;
+    return data;
+  }
+  // console.log("data", data);
+);
+
 export const slice = createSlice({
   name: "catalogSlice",
   initialState: {
     catalog: [],
     basket: [],
+    newClothes: [],
     queryParams: "",
     status: null,
     error: null,
@@ -59,20 +56,15 @@ export const slice = createSlice({
       state.catalog = action.payload;
     },
     [fetchCatalog.rejected]: (state, action) => {},
-    // [fetchCatalogItem.pending]: (state) => {
-    //   state.status = "loading";
-    //   state.error = null;
-    // },
-    // [fetchCatalogItem.fulfilled]: (state, action) => {
-    //   state.status = "resolved";
-    //   const itemAlreadyExist = state.itemCard.filter(
-    //     (item) => +item.id === +action.payload.id
-    //   );
-    //   if (!itemAlreadyExist.length) {
-    //     state.itemCard.push(action.payload);
-    //   }
-    // },
-    // [fetchCatalog.rejected]: (state, action) => {},
+    [fetchNewClothes.pending]: (state) => {
+      state.status = "loading";
+      state.error = null;
+    },
+    [fetchNewClothes.fulfilled]: (state, action) => {
+      state.status = "resolved";
+      state.newClothes = action.payload;
+    },
+    [fetchNewClothes.rejected]: (state, action) => {},
   },
 });
 
