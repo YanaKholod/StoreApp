@@ -22,7 +22,6 @@ export const fetchNewClothes = createAsyncThunk(
     const data = await response;
     return data;
   }
-  // console.log("data", data);
 );
 
 export const slice = createSlice({

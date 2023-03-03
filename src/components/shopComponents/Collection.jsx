@@ -3,13 +3,14 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchCatalog } from "../../store/shopSlice";
 import { addItemToBasket } from "../../store/shopSlice";
 import ShopItemCard from "./ShopItemCard";
-// import styled from "styled-components";
-import s from "../CompStyles.module.css";
-// const Styled = styled.h1`
-//   font-size: 1.5em;
-//   text-align: center;
-//   color: palevioletred;
-// `;
+import styled from "styled-components";
+
+const Styled = {
+  CollectionWrapper: styled.div`
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+  `,
+};
 
 const Collection = () => {
   const { catalog, queryParams } = useSelector((state) => state);
@@ -26,20 +27,11 @@ const Collection = () => {
   }, [queryParams]);
 
   const handleItemToBasket = (item) => {
-    dispatch(
-      addItemToBasket({
-        id: item.id,
-        title: item.title,
-        img: item.image,
-        category: item.category,
-        description: item.description,
-        price: item.price,
-      })
-    );
+    dispatch(addItemToBasket(item));
   };
 
   return (
-    <div className={s.wrapper}>
+    <Styled.CollectionWrapper>
       {catalog.map((item, index) => {
         return (
           <ShopItemCard
@@ -56,7 +48,7 @@ const Collection = () => {
           />
         );
       })}
-    </div>
+    </Styled.CollectionWrapper>
   );
 };
 

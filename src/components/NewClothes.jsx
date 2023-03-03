@@ -3,21 +3,14 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchNewClothes } from "../store/shopSlice";
 import { addItemToBasket } from "../store/shopSlice";
 import ShopItemCard from "./shopComponents/ShopItemCard";
+import styled from "styled-components";
 
-// const Styled = {
-//   Wrapper: styled.div`
-//     width: 300px;
-//     height: 500px;
-//     background: white;
-//     margin: auto;
-//     position: relative;
-//     overflow: hidden;
-//     border-radius: 10px 10px 10px 10px;
-//     box-shadow: 0;
-//     transform: scale(0.95);
-//     transition: box-shadow 0.5s, transform 0.5s;
-//   `,
-// };
+const Styled = {
+  NewCollectionWrapper: styled.div`
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+  `,
+};
 const NewClothes = () => {
   const newClothesCatalog = useSelector((state) => state.newClothes);
   const dispatch = useDispatch();
@@ -27,19 +20,10 @@ const NewClothes = () => {
   }, []);
 
   const handleItemToBasket = (item) => {
-    dispatch(
-      addItemToBasket({
-        id: item.id,
-        title: item.name,
-        img: item.imgUrl,
-        category: item.category,
-        description: item.compound,
-        price: item.price,
-      })
-    );
+    dispatch(addItemToBasket(item));
   };
   return (
-    <div>
+    <Styled.NewCollectionWrapper>
       {newClothesCatalog.map((item) => {
         return (
           <ShopItemCard
@@ -56,7 +40,7 @@ const NewClothes = () => {
           />
         );
       })}
-    </div>
+    </Styled.NewCollectionWrapper>
   );
 };
 
