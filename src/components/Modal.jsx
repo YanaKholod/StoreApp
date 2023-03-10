@@ -53,7 +53,6 @@ const Styled = {
   `,
 };
 const Modal = ({ purchaseAction, onModalClose, item }) => {
-  console.log("item", item);
   return (
     <Styled.Wrapper onClick={() => onModalClose(false)}>
       <Styled.Content>
