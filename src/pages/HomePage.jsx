@@ -15,9 +15,6 @@ const HomePage = () => {
     <div>
       <CategoriesCarousel />
       <NewClothes />
-      <div className={s.pokeCommunity}></div>
-      <div className={s.pokeApp}></div>
-      <div className={s.footerContacts}></div>
     </div>
   );
 };

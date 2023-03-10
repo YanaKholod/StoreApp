@@ -36,10 +36,29 @@ export const slice = createSlice({
   },
   reducers: {
     addItemToBasket(state, action) {
-      state.basket.push(action.payload);
+      const position = state.basket
+        .map((item) => item.id)
+        .indexOf(action.payload.id);
+      if (position !== -1) {
+        state.basket[position] = {
+          ...action.payload,
+          count: state.basket[position].count + 1,
+        };
+      } else {
+        state.basket.push({ ...action.payload, count: 1 });
+      }
     },
     removeItemFromBasket(state, action) {
       state.basket.splice(action.payload, 1);
+    },
+    deleteOneItemFromBasket(state, action) {
+      const position = state.basket
+        .map((item) => item.id)
+        .indexOf(action.payload.id);
+
+      if (state.basket[position].count !== 1) {
+        state.basket[position].count -= 1;
+      }
     },
     setQueryParams(state, action) {
       state.queryParams = action.payload;
@@ -74,4 +93,5 @@ export const {
   addItemToBasket,
   removeItemFromBasket,
   setQueryParams,
+  deleteOneItemFromBasket,
 } = slice.actions;
