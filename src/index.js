@@ -10,6 +10,7 @@ const Styled = {
     margin: 0;
     padding: 0;
     height: 100%;
+    width: 100%;
     background-color: rgba(255, 255, 255, 0.604);
     font-family: "Gill Sans", sans-serif;
     box-sizing: border-box;
