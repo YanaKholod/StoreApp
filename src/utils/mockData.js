@@ -1,36 +1,3 @@
-export const menuData = [
-  {
-    id: 0,
-    title: "Main",
-    link: "/",
-  },
-  {
-    id: 1,
-    title: "Catalog",
-    link: "/catalog",
-  },
-  {
-    id: 2,
-    title: "Contacts",
-    link: "/contacts",
-  },
-  {
-    id: 3,
-    title: "Login",
-    link: "/login",
-  },
-  {
-    id: 4,
-    title: "SignUp",
-    link: "/signup",
-  },
-  {
-    id: 5,
-    title: "Basket",
-    link: "/basket",
-  },
-];
-
 export const dataForCarousel = [
   {
     id: 0,
@@ -40,7 +7,7 @@ export const dataForCarousel = [
     imgUrl:
       "https://img.freepik.com/free-photo/dark-haired-woman-with-red-lipstick-smiles-leans-on-stand-with-clothes-and-holds-package-on-pink-background_197531-17609.jpg?w=1380&t=st=1677510570~exp=1677511170~hmac=8e655e8891486497a202b0b36497e6d4e5444ecd04980037b3776eca9c294d6c",
 
-    urlWithFilter: "",
+    categoryName: "womens_clothing",
   },
   {
     id: 1,
@@ -49,7 +16,7 @@ export const dataForCarousel = [
     buttonText: "Check it out!",
     imgUrl:
       "https://img.freepik.com/free-photo/overhead-view-of-womans-casual-outfits_93675-134231.jpg?w=1380&t=st=1677510510~exp=1677511110~hmac=1960550528b2979ef134af29a80e05c4eb1b9049b25ed02b829b41d7b8f145dd",
-    urlWithFilter: "",
+    categoryName: "mens_clothing",
   },
   {
     id: 2,
@@ -58,7 +25,7 @@ export const dataForCarousel = [
     buttonText: "Check it out!",
     imgUrl:
       "https://img.freepik.com/free-photo/top-view-of-smartphone-with-keyboard-and-charger_23-2149404179.jpg?w=1380&t=st=1677510604~exp=1677511204~hmac=696187e7eca9b231349d7418534698f7be81c92f046d464126d5c70fc234c349",
-    urlWithFilter: "",
+    categoryName: "electronics",
   },
   {
     id: 3,
@@ -67,7 +34,7 @@ export const dataForCarousel = [
     buttonText: "Check it out!",
     imgUrl:
       "https://img.freepik.com/free-photo/abstract-gold-chain-jewellery-presentation_23-2149599060.jpg?w=1380&t=st=1677510645~exp=1677511245~hmac=39d9c36f07b02e32df2b0171291f7e48371f80bb6d6d0049a3d5bca155a30bf7",
-    urlWithFilter: "",
+    categoryName: "jewelry",
   },
 ];
 

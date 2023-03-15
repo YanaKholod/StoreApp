@@ -78,6 +78,15 @@ const Styled = {
 const Basket = () => {
   const basketCollection = useSelector((state) => state.basket);
   const dispatch = useDispatch();
+  let totalResult = 0;
+  const totalCounter = () => {
+    basketCollection.forEach((item) => {
+      const itemCount = item.count;
+      const itemPrice = item.price;
+      const sum = itemCount * itemPrice;
+      totalResult += sum;
+    });
+  };
 
   const handleDeleteItem = (index) => {
     dispatch(removeItemFromBasket(index));
@@ -88,40 +97,43 @@ const Basket = () => {
   const handleItemToBasket = (item) => {
     dispatch(addItemToBasket(item));
   };
-
+  totalCounter();
   return (
     <Styled.HeadWrapper>
       {basketCollection.length ? (
-        basketCollection.map((item, index) => (
-          <Styled.Wrapper key={index}>
-            <Styled.Container>
-              <Styled.Img src={item.img} alt={item.title} />
-              <Styled.TitleDiv>{item.title} </Styled.TitleDiv>
-              <div> {item.category}</div>
-              <div> ${item.price}</div>
-              <Styled.CounterWrapper>
-                <div onClick={() => handleItemToBasket(item)}>
-                  <PlusIcon />
+        <>
+          {basketCollection.map((item, index) => (
+            <Styled.Wrapper key={index}>
+              <Styled.Container>
+                <Styled.Img src={item.img} alt={item.title} />
+                <Styled.TitleDiv>{item.title} </Styled.TitleDiv>
+                <div> {item.category}</div>
+                <div> ${item.price}</div>
+                <Styled.CounterWrapper>
+                  <div onClick={() => handleItemToBasket(item)}>
+                    <PlusIcon />
+                  </div>
+                  {item.count}
+                  <div onClick={() => deleteOneItem(item)}>
+                    <MinusIcon />
+                  </div>
+                </Styled.CounterWrapper>
+                <div>
+                  <Styled.Button onClick={() => handleDeleteItem(index)}>
+                    <BasketIcon
+                      width={25}
+                      height={25}
+                      color={"rgb(231, 50, 50)"}
+                    />
+                  </Styled.Button>
                 </div>
-                {item.count}
-                <div onClick={() => deleteOneItem(item)}>
-                  <MinusIcon />
-                </div>
-              </Styled.CounterWrapper>
-              <div>
-                <Styled.Button onClick={() => handleDeleteItem(index)}>
-                  <BasketIcon
-                    width={25}
-                    height={25}
-                    color={"rgb(231, 50, 50)"}
-                  />
-                </Styled.Button>
-              </div>
-            </Styled.Container>
-          </Styled.Wrapper>
-        ))
+              </Styled.Container>
+            </Styled.Wrapper>
+          ))}
+          <div>{totalResult}</div>
+        </>
       ) : (
-        <Styled.NoItemsDiv>There no items in basket</Styled.NoItemsDiv>
+        <Styled.NoItemsDiv>No items in basket</Styled.NoItemsDiv>
       )}
     </Styled.HeadWrapper>
   );

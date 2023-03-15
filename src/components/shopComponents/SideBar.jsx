@@ -1,35 +1,70 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { setQueryParams } from "../../store/shopSlice";
+import styled from "styled-components";
+import { sortedLinks } from "../../utils/staticData";
+import { useNavigate, useSearchParams } from "react-router-dom";
+
+const Styled = {
+  SortButton: styled.div`
+    background-color: #ffffff;
+    border-radius: 40em;
+    box-shadow: #adcfff 0 -12px 6px inset;
+    box-sizing: border-box;
+    color: #000000;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 20x;
+    font-weight: 700;
+    margin: 0;
+    padding: 10px 17px;
+    text-align: center;
+    &:hover {
+      background-color: #ae6bdb;
+      box-shadow: #61228b 0 -6px 8px inset;
+      transform: scale(1.125);
+    }
+    ${({ isActive }) =>
+      isActive
+        ? "background-color: #ae6bdb; box-shadow: #61228b 0 -6px 8px inset;transform: scale(1.025);"
+        : ""})}
+    
+  `,
+};
 
 const SideBar = () => {
+  const history = useNavigate();
   const dispatch = useDispatch();
-  const changeCategoryHandler = (text) => {
-    dispatch(setQueryParams(text));
-  };
+  const [searchParams] = useSearchParams();
+  const queryParamCategory = searchParams.get("category");
 
+  const currentCategoryData = sortedLinks.find((item) => {
+    return item.categoryName === queryParamCategory;
+  });
+
+  useEffect(() => {
+    if (currentCategoryData)
+      dispatch(setQueryParams(currentCategoryData.secondaryUrl));
+  }, [queryParamCategory]);
+
+  const changeCategoryHandler = (item) => {
+    dispatch(setQueryParams(item.secondaryUrl));
+    history({
+      pathname: "/catalog",
+      search: `?category=${item.categoryName}`,
+    });
+  };
   return (
     <div>
-      <div>
-        Categories:
-        <button
-          onClick={() => changeCategoryHandler("/category/women's clothing")}
+      {sortedLinks.map((item) => (
+        <Styled.SortButton
+          isActive={item.categoryName === queryParamCategory}
+          key={item.id}
+          onClick={() => changeCategoryHandler(item)}
         >
-          Women`s clothes
-        </button>
-        <button
-          onClick={() => changeCategoryHandler("/category/men's clothing")}
-        >
-          Men`s clothes
-        </button>
-        <button onClick={() => changeCategoryHandler("/category/jewelery")}>
-          Jewelry
-        </button>
-        <button onClick={() => changeCategoryHandler("/category/electronics")}>
-          Electronics
-        </button>
-        <button onClick={() => changeCategoryHandler("")}>Show all</button>
-      </div>
+          {item.name}
+        </Styled.SortButton>
+      ))}
     </div>
   );
 };

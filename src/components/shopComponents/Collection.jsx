@@ -9,6 +9,12 @@ const Styled = {
   CollectionWrapper: styled.div`
     display: grid;
     grid-template-columns: repeat(5, 1fr);
+    @media (max-width: 1300px) {
+      display: flex;
+      width: 100%;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
   `,
 };
 

@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 const Styled = {
@@ -45,13 +46,23 @@ const Styled = {
     }
   `,
 };
-
 const CarouselItem = ({ item }) => {
+  const history = useNavigate();
+
+  const handleClick = () => {
+    history({
+      pathname: "/catalog",
+      search: `?category=${item.categoryName}`,
+    });
+  };
+
   return (
     <Styled.Wrapper bckgrImg={item.imgUrl}>
       <Styled.WrapperInfo>
         <Styled.CarouselText>{item.imgText}</Styled.CarouselText>
-        <Styled.CarouselButton>{item.buttonText}</Styled.CarouselButton>
+        <Styled.CarouselButton onClick={() => handleClick()}>
+          {item.buttonText}
+        </Styled.CarouselButton>
       </Styled.WrapperInfo>
     </Styled.Wrapper>
   );

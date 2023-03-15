@@ -7,8 +7,10 @@ import styled from "styled-components";
 
 const Styled = {
   NewCollectionWrapper: styled.div`
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
+    display: flex;
+    width: 100%;
+    flex-wrap: wrap;
+    justify-content: center;
   `,
 };
 const NewClothes = () => {

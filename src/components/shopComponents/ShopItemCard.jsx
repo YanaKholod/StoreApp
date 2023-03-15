@@ -9,13 +9,21 @@ const Styled = {
     justify-content: space-between;
     max-width: 200px;
     height: max-content;
-    margin: 21px 25px;
+    margin: 18px 21px;
     border-radius: 8px;
     padding: 10px;
     &:hover {
       box-shadow: rgba(0, 0, 0, 0.08) 0px 10px 10px,
         rgba(0, 0, 0, 0.08) 0px -7px 15px, rgba(0, 0, 0, 0.08) 0px 4px 6px,
         rgba(0, 0, 0, 0.08) 0px 7px 8px, rgba(0, 0, 0, 0.08) 0px -3px 5px;
+    }
+    @media (max-width: 668px) {
+      display: flex;
+      flex-direction: column;
+      margin-top: 40px;
+      width: 300px;
+      height: 400px;
+      margin: 0 21px;
     }
   `,
   WrapperInfo: styled.div`

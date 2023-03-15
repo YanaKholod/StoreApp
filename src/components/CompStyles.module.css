@@ -1,0 +1,19 @@
+:hover {
+   display:flex;
+   justify-content: space-around;
+   flex-flow: column nowrap;
+   position: fixed;
+   top: 0;
+   right: 0;
+   height: 6.25rem;
+   width: 12.5rem;
+   background-color: #8ebce1;
+   z-index: 10;
+   color: black;
+   background-color:#ffffff;
+   opacity: 0.3;
+ }
+ /* ${({ isOpen }) =>
+ isOpen
+   ? " display: flex; justify-content: space-around; flex-flow: column nowrap; position: fixed; top: 0; right: 0; height: 6.25rem; width: 12.5rem; "
+   : ""} */
