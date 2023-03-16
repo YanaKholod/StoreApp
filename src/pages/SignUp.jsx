@@ -57,7 +57,7 @@ const signUpInputsData = [
       pattern: {
         value:
           /^\s*(?:\+?(\d{1,3}))?[- (]*(\d{3})[- )]*(\d{3})[- ]*(\d{4})(?: *[x/#]{1}(\d+))?\s*$/,
-        message: "ust be more than 5 symbols",
+        message: "Must be 10 symbols",
       },
     },
   },
@@ -101,7 +101,7 @@ const SignUp = () => {
   });
 
   const onSubmit = (data) => {
-    console.log("data", data);
+    console.log("SignUp Data", data);
     reset();
   };
   return (
