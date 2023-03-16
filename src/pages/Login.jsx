@@ -42,7 +42,7 @@ const Login = () => {
     mode: "onBlur",
   });
   const onSubmit = (data) => {
-    console.log("data", data);
+    console.log("LogIn Data", data);
     reset();
   };
 

@@ -110,8 +110,6 @@ const ShopItemCard = ({ item, handleItemToBasket }) => {
             isActive={isActive}
           >
             {isActive ? "✓" : "Buy now"}
-            {/* Buy now
-            <span>Huhfhfhfhfh</span> */}
           </Styled.Button>
         </Styled.ButtonWrapper>
       </Styled.CardWrapper>

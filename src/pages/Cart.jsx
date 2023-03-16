@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import {
   deleteOneItemFromBasket,
@@ -9,6 +9,7 @@ import styled from "styled-components";
 import BasketIcon from "../components/icons/BasketIcon";
 import PlusIcon from "../components/icons/PlusIcon";
 import MinusIcon from "../components/icons/MinusIcon";
+import SendingForm from "../components/SendingForm";
 
 const Styled = {
   HeadWrapper: styled.div`
@@ -129,6 +130,7 @@ const Styled = {
 };
 
 const Cart = () => {
+  const [showModalForm, setShowModalForm] = useState(false);
   const basketCollection = useSelector((state) => state.basket);
   const dispatch = useDispatch();
   let totalResult = 0;
@@ -152,47 +154,54 @@ const Cart = () => {
   };
   totalCounter();
   return (
-    <Styled.HeadWrapper>
-      <p>Cart</p>
-      {basketCollection.length ? (
-        <>
-          {basketCollection.map((item, index) => (
-            <Styled.Wrapper key={index}>
-              <Styled.Container>
-                <Styled.Img src={item.img} alt={item.title} />
-                <Styled.TitleDiv>{item.title} </Styled.TitleDiv>
-                <div> {item.category}</div>
-                <div> ${item.price}</div>
-                <Styled.CounterWrapper>
-                  <div onClick={() => handleItemToBasket(item)}>
-                    <PlusIcon />
+    <>
+      <Styled.HeadWrapper>
+        <p>Cart</p>
+        {basketCollection.length ? (
+          <>
+            {basketCollection.map((item, index) => (
+              <Styled.Wrapper key={index}>
+                <Styled.Container>
+                  <Styled.Img src={item.img} alt={item.title} />
+                  <Styled.TitleDiv>{item.title} </Styled.TitleDiv>
+                  <div> {item.category}</div>
+                  <div> ${item.price}</div>
+                  <Styled.CounterWrapper>
+                    <div onClick={() => handleItemToBasket(item)}>
+                      <PlusIcon />
+                    </div>
+                    {item.count}
+                    <div onClick={() => deleteOneItem(item)}>
+                      <MinusIcon />
+                    </div>
+                  </Styled.CounterWrapper>
+                  <div>
+                    <Styled.Button onClick={() => handleDeleteItem(index)}>
+                      <BasketIcon color={"rgb(231, 50, 50)"} />
+                    </Styled.Button>
                   </div>
-                  {item.count}
-                  <div onClick={() => deleteOneItem(item)}>
-                    <MinusIcon />
-                  </div>
-                </Styled.CounterWrapper>
-                <div>
-                  <Styled.Button onClick={() => handleDeleteItem(index)}>
-                    <BasketIcon
-                      // width={25}
-                      // height={25}
-                      color={"rgb(231, 50, 50)"}
-                    />
-                  </Styled.Button>
-                </div>
-              </Styled.Container>
-            </Styled.Wrapper>
-          ))}
-          <Styled.TotalSum>
-            <p>Total: ${totalResult.toFixed(2)}</p>
-            <button>Make an order</button>
-          </Styled.TotalSum>
-        </>
-      ) : (
-        <Styled.NoItemsDiv>No items in cart</Styled.NoItemsDiv>
+                </Styled.Container>
+              </Styled.Wrapper>
+            ))}
+            <Styled.TotalSum>
+              <p>Total: ${totalResult.toFixed(2)}</p>
+              <button
+                onClick={() => {
+                  setShowModalForm(true);
+                }}
+              >
+                Make an order
+              </button>
+            </Styled.TotalSum>
+          </>
+        ) : (
+          <Styled.NoItemsDiv>No items in cart</Styled.NoItemsDiv>
+        )}
+      </Styled.HeadWrapper>
+      {showModalForm && (
+        <SendingForm onModalClose={() => setShowModalForm(false)} />
       )}
-    </Styled.HeadWrapper>
+    </>
   );
 };
 
