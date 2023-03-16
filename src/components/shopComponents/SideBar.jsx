@@ -8,8 +8,8 @@ import { useNavigate, useSearchParams } from "react-router-dom";
 const Styled = {
   SortButton: styled.div`
     background-color: #ffffff;
-    border-radius: 40em;
-    box-shadow: #adcfff 0 -12px 6px inset;
+    border-radius: 40rem;
+    box-shadow: #61228b 0 -4px 8px inset;
     box-sizing: border-box;
     color: #000000;
     cursor: pointer;
@@ -21,14 +21,12 @@ const Styled = {
     text-align: center;
     &:hover {
       background-color: #ae6bdb;
-      box-shadow: #61228b 0 -6px 8px inset;
-      transform: scale(1.125);
+      box-shadow: #61228b 0 -3px 6px inset;
     }
     ${({ isActive }) =>
       isActive
-        ? "background-color: #ae6bdb; box-shadow: #61228b 0 -6px 8px inset;transform: scale(1.025);"
-        : ""})}
-    
+        ? "background: #7f5feb; color: #dfdeee; box-shadow: #61228b 0 -3px 6px inset; "
+        : ""}
   `,
 };
 

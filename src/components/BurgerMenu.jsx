@@ -19,8 +19,7 @@ const Styled = {
   BurgerItem: styled(NavLink)`
     list-style-type: none;
     margin: 1.3rem 1.2rem;
-    //  background-color: #ffffff;
-    background-color: #8ebce1;
+    background-color: #ffffff;
     border-radius: 40em;
     color: #000000;
     cursor: pointer;
@@ -29,10 +28,8 @@ const Styled = {
     font-size: 17px;
     padding: 10px 17px;
     text-align: center;
-    &:hover {
-      background-color: #ae6bdb;
-      box-shadow: #61228b 0 -6px 8px inset;
-      transform: scale(1.125);
+    box-shadow: #61228b 0 -4px 8px inset;
+
     }
   `,
 };

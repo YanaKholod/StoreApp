@@ -44,10 +44,16 @@ const Styled = {
     cursor: pointer;
     position: relative;
     padding: 10px 20px;
-    background: rgba(146, 144, 144, 0.399);
+    background: #7f5feb;
+    color: #dfdeee;
+    box-shadow: #61228b 0 -4px 8px inset;
     font-size: 15px;
     border-top-right-radius: 10px;
     border-bottom-left-radius: 10px;
+    ${({ isActive }) =>
+      isActive
+        ? "background: #16c67a; color:  #000704; box-shadow:  #0b9b5d 0 -3px 6px inset; transition: all 0.5s ease-in-out;"
+        : ""}
   `,
   Span: styled.span`
     font-weight: 700;
@@ -55,10 +61,6 @@ const Styled = {
   H2: styled.h2`
     display: block;
     font-size: 20px;
-    // margin-block-start: 0.83em;
-    // margin-block-end: 0.83em;
-    // margin-inline-start: 0px;
-    // margin-inline-end: 0px;
     font-weight: bold;
     white-space: nowrap;
     width: 100%;
@@ -72,11 +74,16 @@ const Styled = {
 };
 
 const ShopItemCard = ({ item, handleItemToBasket }) => {
+  const [showModal, setShowModal] = useState(false);
+  const [isActive, setIsActive] = useState(false);
+
   const handleAddItemToBasket = (item) => {
     handleItemToBasket(item);
+    setIsActive(!isActive);
+    setTimeout(() => {
+      setIsActive(false);
+    }, 1000);
   };
-
-  const [showModal, setShowModal] = useState(false);
 
   return (
     <>
@@ -98,8 +105,13 @@ const ShopItemCard = ({ item, handleItemToBasket }) => {
           </Styled.DetailsDiv>
         </Styled.WrapperInfo>
         <Styled.ButtonWrapper>
-          <Styled.Button onClick={() => handleAddItemToBasket(item)}>
-            Buy now
+          <Styled.Button
+            onClick={() => handleAddItemToBasket(item)}
+            isActive={isActive}
+          >
+            {isActive ? "✓" : "Buy now"}
+            {/* Buy now
+            <span>Huhfhfhfhfh</span> */}
           </Styled.Button>
         </Styled.ButtonWrapper>
       </Styled.CardWrapper>

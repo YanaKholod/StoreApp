@@ -9,18 +9,19 @@ const Styled = {
     display: none;
     flex-direction: column;
     justify-content: space-around;
-    width: 70px;
-    height: 70px;
+    width: 50px;
+    height: 50px;
     cursor: pointer;
     padding: 8px;
     @media (max-width: 860px) {
       display: flex;
+    }
   `,
   Div: styled.div`
     width: 100%;
-    height: 9px;
+    height: 5px;
     background-color: #61228b;
-    margin: 7px 0;
+    margin: 5px 0;
     border-radius: 4px;
   `,
   HeadWrapper: styled.div`
@@ -28,9 +29,12 @@ const Styled = {
     justify-content: end;
     width: 100%;
     z-index: 20;
-    height: 5.3rem;
+    height: 5rem;
     background-color: #ffffff;
-    box-shadow: #adcfff 0 -12px 6px inset;
+    box-shadow: #61228b 0 -3px 6px inset;
+    @media (max-width: 860px) {
+      height: 4rem;
+    } ;
   `,
   Wrapper: styled.div`
     display: flex;
@@ -40,26 +44,25 @@ const Styled = {
     }
   `,
   Item: styled(NavLink)`
-    list-style-type: none;
+    display: flex;
+    align-items: center;
     margin: 1.3rem 1.2rem;
-    background-color: #ffffff;
     border-radius: 40em;
     color: #000000;
     cursor: pointer;
-    font-weight: 700;
+    font-weight: 650;
     text-decoration: none;
     font-size: 25px;
     padding: 10px 17px;
     text-align: center;
     &:hover {
       background-color: #ae6bdb;
-      box-shadow: #61228b 0 -6px 8px inset;
-      transform: scale(1.125);
+      box-shadow: #61228b 0 -3px 6px inset;
     }
     &.active {
-      background-color: #ae6bdb;
-      box-shadow: #61228b 0 -6px 8px inset;
-      transform: scale(1.125);
+      background: #7f5feb;
+      color: #dfdeee;
+      box-shadow: #61228b 0 -4px 8px inset;
     }
     @media (max-width: 1100px) {
       font-size: 20px;

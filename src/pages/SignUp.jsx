@@ -1,5 +1,6 @@
 import React from "react";
 import { useForm } from "react-hook-form";
+import { Styled } from "../components/Styled";
 
 const signUpInputsData = [
   {
@@ -11,8 +12,8 @@ const signUpInputsData = [
     validationRules: {
       required: "Required field!",
       minLength: {
-        value: 5,
-        message: "Must be more than 5 symbols",
+        value: 1,
+        message: "Must be more than 1 symbols",
       },
     },
   },
@@ -62,10 +63,10 @@ const signUpInputsData = [
   },
   {
     id: 4,
-    inputType: "text",
+    inputType: "password",
     inputName: "password",
     labelName: "Password",
-    placeholder: "Enter your password",
+    placeholder: "Enter password",
     validationRules: {
       required: "Required field!",
       minLength: {
@@ -76,10 +77,10 @@ const signUpInputsData = [
   },
   {
     id: 5,
-    inputType: "text",
+    inputType: "password",
     inputName: "repeatPassword",
     labelName: "Repeat password",
-    placeholder: "Enter your password",
+    placeholder: "Repeat password",
     validationRules: {
       required: "Required field!",
       minLength: {
@@ -89,9 +90,9 @@ const signUpInputsData = [
     },
   },
 ];
-
 const SignUp = () => {
   const {
+    handleSubmit,
     register,
     formState: { errors, isValid },
     reset,
@@ -99,31 +100,39 @@ const SignUp = () => {
     mode: "onBlur",
   });
 
+  const onSubmit = (data) => {
+    console.log("data", data);
+    reset();
+  };
   return (
-    <div>
-      Registration
-      <form>
+    <Styled.Wrapper>
+      <p>Registration</p>
+      <Styled.Form onSubmit={handleSubmit(onSubmit)}>
         {signUpInputsData.map((field) => {
           return (
-            <div key={field.id}>
-              <label>
-                <p>{field.labelName}</p>
-                <input
+            <Styled.FieldWrapper key={field.id}>
+              <Styled.Label>
+                <Styled.Input
                   type={field.inputType}
                   {...register(field.inputName, field.validationRules)}
                   placeholder={field.placeholder}
-                ></input>
-              </label>
-              <div>
+                ></Styled.Input>
+              </Styled.Label>
+              <Styled.Errors>
                 {errors[field.inputName] && (
                   <p>{errors[field.inputName].message}</p>
                 )}
-              </div>
-            </div>
+              </Styled.Errors>
+            </Styled.FieldWrapper>
           );
         })}
-      </form>
-    </div>
+        <div>
+          <Styled.Button type="submit" disabled={!isValid}>
+            Submit
+          </Styled.Button>
+        </div>
+      </Styled.Form>
+    </Styled.Wrapper>
   );
 };
 

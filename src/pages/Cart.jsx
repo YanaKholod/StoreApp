@@ -12,19 +12,30 @@ import MinusIcon from "../components/icons/MinusIcon";
 
 const Styled = {
   HeadWrapper: styled.div`
-    margin: 0;
-    padding: 0;
-    height: 50vh;
     display: flex;
+    width: 100%;
     flex-direction: column;
     align-items: center;
+    p {
+      font-size: 25px;
+      font-weight: 600;
+    }
+    @media (max-width: 320px) {
+      p {
+        font-size: 20px;
+        margin: 10px 0;
+      }
+    }
   `,
   Wrapper: styled.div`
-    width: 70%;
+    width: 100%;
     background-color: #ffffff;
-    border-radius: 20px;
-    padding: 10px;
-    box-shadow: 0px 25px 40px #1687d933;
+    border-radius: 7px;
+    padding: 10px 0;
+    box-shadow: #61228b 0 0 2px inset;
+    @media (max-width: 320px) {
+      padding: 3px 0;
+    }
   `,
   Container: styled.div`
     display: flex;
@@ -32,13 +43,21 @@ const Styled = {
     width: 90%;
     height: 30%;
     justify-content: space-between;
-    align-items: baseline;
+    align-items: center;
     font-size: 17px;
+    @media (max-width: 320px) {
+      display: flex;
+      flex-direction: column;
+    }
   `,
   Img: styled.img`
     margin: 10px;
     height: 40px;
     width: 50px;
+    @media (max-width: 320px) {
+      width: 30px;
+      height: 40px;
+    }
   `,
   Button: styled.button`
     position: relative;
@@ -51,6 +70,10 @@ const Styled = {
     box-shadow: 0 0 10px #333;
     overflow: hidden;
     margin-bottom: 5px;
+    @media (max-width: 320px) {
+      width: 30px;
+      height: 30px;
+    }
   `,
   CounterWrapper: styled.div`
     display: flex;
@@ -63,19 +86,49 @@ const Styled = {
     text-overflow: ellipsis;
     white-space: nowrap;
     width: calc(100% - 75%);
+    @media (max-width: 320px) {
+      width: 100%;
+    }
   `,
   NoItemsDiv: styled.div`
-    font-size: 60px;
+    font-size: 40px;
     font-weight: 300;
     text-align: center;
     padding: 20px;
     margin-top: 20px;
     border-radius: 20px;
-    box-shadow: #1687d933 0px 7px 29px 0px;
+    box-shadow: #61228b 0 -4px 8px inset;
+  `,
+  TotalSum: styled.div`
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    width: 100%;
+    background-color: #ffffff;
+    p {
+      font-size: 18px;
+      margin: 20px 20px;
+    }
+    button {
+      display: flex;
+      align-items: center;
+      margin: 20px 30px;
+      padding: 7px 15px;
+      border: 0;
+      background: #7f5feb;
+      color: #dfdeee;
+      border-radius: 100px;
+      height: 3rem;
+      font-size: 16px;
+      cursor: pointer;
+      &:hover {
+        background: #5d33e6;
+      }
+    }
   `,
 };
 
-const Basket = () => {
+const Cart = () => {
   const basketCollection = useSelector((state) => state.basket);
   const dispatch = useDispatch();
   let totalResult = 0;
@@ -100,6 +153,7 @@ const Basket = () => {
   totalCounter();
   return (
     <Styled.HeadWrapper>
+      <p>Cart</p>
       {basketCollection.length ? (
         <>
           {basketCollection.map((item, index) => (
@@ -121,8 +175,8 @@ const Basket = () => {
                 <div>
                   <Styled.Button onClick={() => handleDeleteItem(index)}>
                     <BasketIcon
-                      width={25}
-                      height={25}
+                      // width={25}
+                      // height={25}
                       color={"rgb(231, 50, 50)"}
                     />
                   </Styled.Button>
@@ -130,13 +184,16 @@ const Basket = () => {
               </Styled.Container>
             </Styled.Wrapper>
           ))}
-          <div>{totalResult}</div>
+          <Styled.TotalSum>
+            <p>Total: ${totalResult.toFixed(2)}</p>
+            <button>Make an order</button>
+          </Styled.TotalSum>
         </>
       ) : (
-        <Styled.NoItemsDiv>No items in basket</Styled.NoItemsDiv>
+        <Styled.NoItemsDiv>No items in cart</Styled.NoItemsDiv>
       )}
     </Styled.HeadWrapper>
   );
 };
 
-export default Basket;
+export default Cart;

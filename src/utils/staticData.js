@@ -13,8 +13,8 @@ export const menuData = [
   },
   {
     id: 2,
-    title: "Contacts",
-    link: "/contacts",
+    title: "About us",
+    link: "/aboutUs",
     isActive: false,
   },
   {
@@ -31,8 +31,8 @@ export const menuData = [
   },
   {
     id: 5,
-    title: "Basket",
-    link: "/basket",
+    title: "Cart",
+    link: "/cart",
     isActive: false,
   },
 ];
