@@ -31,7 +31,7 @@ const Styled = {
   CarouselButton: styled.button`
     background-color: #4b4949;
     border: 2px solid #070000;
-    border-radius: 15px;
+    border-radius: 40rem;
     color: #ffffff;
     cursor: pointer;
     font-size: 25px;
@@ -40,9 +40,11 @@ const Styled = {
     min-height: 60px;
     outline: none;
     &:hover {
-      box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
-        rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
-        rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+      // box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
+      //   rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
+      //   rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+      background-color: #ae6bdb;
+      box-shadow: #61228b 0 -3px 6px inset;
     }
   `,
 };

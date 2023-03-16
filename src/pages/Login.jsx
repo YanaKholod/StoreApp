@@ -1,5 +1,6 @@
 import React from "react";
 import { useForm } from "react-hook-form";
+import { Styled } from "../components/Styled";
 
 const loginInputsData = [
   {
@@ -31,40 +32,51 @@ const loginInputsData = [
     },
   },
 ];
-
 const Login = () => {
   const {
+    handleSubmit,
     register,
     formState: { errors, isValid },
     reset,
   } = useForm({
     mode: "onBlur",
   });
-  console.log("errors", errors);
+  const onSubmit = (data) => {
+    console.log("data", data);
+    reset();
+  };
+
   return (
-    <div>
-      Login
-      <form>
+    <Styled.Wrapper>
+      <p> Login</p>
+      <Styled.Form onSubmit={handleSubmit(onSubmit)}>
         {loginInputsData.map((field) => {
           return (
-            <div key={field.id}>
-              <label>
-                <p>{field.labelName}</p>
-                <input
+            <Styled.FieldWrapper key={field.id}>
+              <Styled.Label>
+                {/* <p>{field.labelName}</p> */}
+                <Styled.Input
+                  type={field.inputType}
                   {...register(field.inputName, field.validationRules)}
                   placeholder={field.placeholder}
-                ></input>
-              </label>
-              <div>
+                ></Styled.Input>
+              </Styled.Label>
+              <Styled.Errors>
                 {errors[field.inputName] && (
                   <p>{errors[field.inputName].message}</p>
                 )}
-              </div>
-            </div>
+              </Styled.Errors>
+            </Styled.FieldWrapper>
           );
         })}
-      </form>
-    </div>
+        <div>
+          <label></label>
+          <Styled.Button type="submit" disabled={!isValid}>
+            Submit
+          </Styled.Button>
+        </div>
+      </Styled.Form>
+    </Styled.Wrapper>
   );
 };
 

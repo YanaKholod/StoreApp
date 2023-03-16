@@ -12,6 +12,14 @@ const Styled = {
     flex-wrap: wrap;
     justify-content: center;
   `,
+  Title: styled.p`
+    display: flex;
+    justify-content: center;
+    font-size: 40px;
+    font-weight: 600;
+    margin: 20px 0;
+    box-shadow: #61228b 0 -4px inset;
+  `,
 };
 const NewClothes = () => {
   const newClothesCatalog = useSelector((state) => state.newClothes);
@@ -25,24 +33,27 @@ const NewClothes = () => {
     dispatch(addItemToBasket(item));
   };
   return (
-    <Styled.NewCollectionWrapper>
-      {newClothesCatalog.map((item) => {
-        return (
-          <ShopItemCard
-            key={item.id}
-            item={{
-              id: item.id,
-              title: item.name,
-              img: item.imgUrl,
-              category: item.category,
-              description: item.compound,
-              price: item.price,
-            }}
-            handleItemToBasket={handleItemToBasket}
-          />
-        );
-      })}
-    </Styled.NewCollectionWrapper>
+    <div>
+      <Styled.Title>New!</Styled.Title>
+      <Styled.NewCollectionWrapper>
+        {newClothesCatalog.map((item) => {
+          return (
+            <ShopItemCard
+              key={item.id}
+              item={{
+                id: item.id,
+                title: item.name,
+                img: item.imgUrl,
+                category: item.category,
+                description: item.compound,
+                price: item.price,
+              }}
+              handleItemToBasket={handleItemToBasket}
+            />
+          );
+        })}
+      </Styled.NewCollectionWrapper>
+    </div>
   );
 };
 

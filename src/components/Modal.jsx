@@ -46,7 +46,9 @@ const Styled = {
     cursor: pointer;
     position: relative;
     padding: 10px 20px;
-    background: rgba(146, 144, 144, 0.399);
+    background: #7f5feb;
+    color: #dfdeee;
+    box-shadow: #61228b 0 -4px 8px inset;
     font-size: 15px;
     border-top-right-radius: 10px;
     border-bottom-left-radius: 10px;
