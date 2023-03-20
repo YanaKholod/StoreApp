@@ -134,6 +134,9 @@ const SendingForm = ({ onModalClose }) => {
             );
           })}
           <div>
+            <Styled.Button type="reset" onClick={() => onModalClose(false)}>
+              Cancel
+            </Styled.Button>
             <Styled.Button type="submit" disabled={!isValid}>
               Submit
             </Styled.Button>

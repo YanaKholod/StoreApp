@@ -18,6 +18,10 @@ export const Styled = {
     justify-content: center;
     margin: 0;
     text-align: center;
+    width: 25rem;
+    @media (max-width: 550px) {
+      width: 16rem;
+    }
   `,
   Input: styled.input`
     box-sizing: border-box;
@@ -55,16 +59,23 @@ export const Styled = {
     background: #7f5feb;
     color: #dfdeee;
     border-radius: 100px;
-    width: 21rem;
+    width: 100%;
     height: 3rem;
     font-size: 16px;
     cursor: pointer;
+    margin-bottom: 4px;
+    padding: 5px 40px;
+    position: relative;
+    z-index: 10;
+
     &:hover {
       background: #5d33e6;
     }
+
     @media (max-width: 360px) {
-      width: 18rem;
-    } ;
+      width: 12rem;
+      font-size: 13px;
+    }
   `,
   FieldWrapper: styled.div`
     display: flex;
