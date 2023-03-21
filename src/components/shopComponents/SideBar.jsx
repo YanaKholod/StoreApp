@@ -8,7 +8,7 @@ import { useNavigate, useSearchParams } from "react-router-dom";
 const Styled = {
   SortButton: styled.div`
     background-color: #ffffff;
-    border-radius: 40rem;
+    border-radius: 50px;
     box-shadow: #61228b 0 -4px 8px inset;
     box-sizing: border-box;
     color: #000000;

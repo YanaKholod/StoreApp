@@ -9,16 +9,16 @@ const Styled = {
     justify-content: space-around;
     flex-flow: column nowrap;
     position: fixed;
-    margin-top: 35.5rem;
+    margin-top: 568px;
     right: 0;
-    width: 12.5rem;
+    width: 200px;
     z-index: 30;
     background-color: #ffffff;
-    border-radius: 1rem;
+    border-radius: 16px;
   `,
   BurgerItem: styled(NavLink)`
     list-style-type: none;
-    margin: 1.3rem 1.2rem;
+    margin: 18px 19px;
     background-color: #ffffff;
     border-radius: 40em;
     color: #000000;

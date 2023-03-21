@@ -8,6 +8,7 @@ import HomePage from "./pages/HomePage";
 import Cart from "./pages/Cart";
 import Footer from "./components/Footer";
 import styled from "styled-components";
+import CartIconWithCount from "./components/CartIconWithCount";
 
 const Styled = {
   Page: styled.div`
@@ -36,6 +37,9 @@ function App() {
               <Route path="/cart" element={<Cart />} />
             </Routes>
           </div>
+        </div>
+        <div>
+          <CartIconWithCount />
         </div>
         <div>
           <Footer />

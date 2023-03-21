@@ -18,9 +18,9 @@ export const Styled = {
     justify-content: center;
     margin: 0;
     text-align: center;
-    width: 25rem;
+    width: 400px;
     @media (max-width: 550px) {
-      width: 16rem;
+      width: 250px;
     }
   `,
   Input: styled.input`
@@ -60,7 +60,7 @@ export const Styled = {
     color: #dfdeee;
     border-radius: 100px;
     width: 100%;
-    height: 3rem;
+    height: 50px;
     font-size: 16px;
     cursor: pointer;
     margin-bottom: 4px;
@@ -73,7 +73,7 @@ export const Styled = {
     }
 
     @media (max-width: 360px) {
-      width: 12rem;
+      width: 190px;
       font-size: 13px;
     }
   `,
