@@ -1,5 +1,4 @@
 import React from "react";
-import s from "./HomePage.module.css";
 import CategoriesCarousel from "../components/carousel/CategoriesCarousel";
 import styled from "styled-components";
 import NewClothes from "../components/NewClothes";

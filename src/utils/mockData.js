@@ -1,3 +1,5 @@
+// import { v4 } from "uuid";
+
 export const dataForCarousel = [
   {
     id: 0,
@@ -40,7 +42,7 @@ export const dataForCarousel = [
 
 export const newClothes = [
   {
-    id: 0,
+    id: "n0kghkghkhge",
     name: "Suit shorts black",
     style: "shorts",
     color: "black",
@@ -51,7 +53,7 @@ export const newClothes = [
     price: 104,
   },
   {
-    id: 1,
+    id: "n1fkbwsfkjvskbfksjf",
     name: "Straight trousers made of milk suit fabric",
     style: "trousers",
     color: "white",
@@ -62,7 +64,7 @@ export const newClothes = [
     price: 86,
   },
   {
-    id: 2,
+    id: "n2lfhlhflifhlfhf",
     name: "White ribbed knit sleeveless top",
     style: "top",
     color: "white",
@@ -73,7 +75,7 @@ export const newClothes = [
     price: 200,
   },
   {
-    id: 3,
+    id: "n3gljlfdg8867665",
     name: "Cropped top made of suit fabric houndstooth on milky",
     style: "top",
     color: "white; prints and patterns",
@@ -84,7 +86,7 @@ export const newClothes = [
     price: 34,
   },
   {
-    id: 4,
+    id: "n4bhhfjfnf9f8f8f7f6f",
     name: "Black knitted flared trousers",
     style: "trousers",
     color: "black",

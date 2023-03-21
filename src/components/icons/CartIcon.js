@@ -4,7 +4,7 @@ const CartIcon = () => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      width="45"
+      width="35"
       height="45"
       viewBox="0 0 122.9 107.5"
     >

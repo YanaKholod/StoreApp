@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import Modal from "../Modal";
 
@@ -73,9 +74,17 @@ const Styled = {
   `,
 };
 
-const ShopItemCard = ({ item, handleItemToBasket }) => {
+const ShopItemCard = ({ item, handleItemToBasket, activeItemId }) => {
   const [showModal, setShowModal] = useState(false);
   const [isActive, setIsActive] = useState(false);
+  const history = useNavigate();
+  const location = useLocation();
+
+  useEffect(() => {
+    if (activeItemId === item.id) {
+      setShowModal(true);
+    }
+  }, []);
 
   const handleAddItemToBasket = (item) => {
     handleItemToBasket(item);
@@ -85,12 +94,27 @@ const ShopItemCard = ({ item, handleItemToBasket }) => {
     }, 1000);
   };
 
+  const openModal = () => {
+    setShowModal(true);
+    history({
+      pathname: location.pathname,
+      search: `?itemsId=${item.id}`,
+    });
+  };
+  const closeModal = () => {
+    setShowModal(false);
+    history({
+      pathname: location.pathname,
+      search: ``,
+    });
+  };
+
   return (
     <>
       <Styled.CardWrapper key={item.id}>
         <Styled.WrapperInfo
           onClick={() => {
-            setShowModal(true);
+            openModal();
           }}
         >
           <Styled.H2>{item.title} </Styled.H2>
@@ -117,7 +141,9 @@ const ShopItemCard = ({ item, handleItemToBasket }) => {
         <Modal
           item={item}
           purchaseAction={handleAddItemToBasket}
-          onModalClose={() => setShowModal(false)}
+          onModalClose={() => {
+            closeModal();
+          }}
         />
       )}
     </>
