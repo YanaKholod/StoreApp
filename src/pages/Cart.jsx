@@ -119,7 +119,7 @@ const Styled = {
       background: #7f5feb;
       color: #dfdeee;
       border-radius: 100px;
-      height: 3rem;
+      height: 50px;
       font-size: 16px;
       cursor: pointer;
       &:hover {

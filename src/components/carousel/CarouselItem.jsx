@@ -31,7 +31,7 @@ const Styled = {
   CarouselButton: styled.button`
     background-color: #4b4949;
     border: 2px solid #070000;
-    border-radius: 40rem;
+    border-radius: 50px;
     color: #ffffff;
     cursor: pointer;
     font-size: 25px;

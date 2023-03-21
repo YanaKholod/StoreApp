@@ -29,11 +29,11 @@ const Styled = {
     justify-content: end;
     width: 100%;
     z-index: 20;
-    height: 5rem;
+    height: 80px;
     background-color: #ffffff;
     box-shadow: #61228b 0 -3px 6px inset;
     @media (max-width: 860px) {
-      height: 4rem;
+      height: 65px;
     } ;
   `,
   Wrapper: styled.div`
@@ -46,8 +46,8 @@ const Styled = {
   Item: styled(NavLink)`
     display: flex;
     align-items: center;
-    margin: 1.3rem 1.2rem;
-    border-radius: 40em;
+    margin: 20px 19px;
+    border-radius: 100px;
     color: #000000;
     cursor: pointer;
     font-weight: 650;
