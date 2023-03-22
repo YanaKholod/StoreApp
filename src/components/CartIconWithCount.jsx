@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { useSelector } from "react-redux";
 import CartIcon from "./icons/CartIcon";
+import { NavLink } from "react-router-dom";
 
 const Styled = {
   LocationIcon: styled.div`
@@ -17,6 +18,9 @@ const Styled = {
     background: #ffffff;
     padding: 3px 9px;
     border-radius: 100px;
+    &:hover {
+      background: #a39f9f96;
+    }
   `,
   CountWrapper: styled.div`
     position: absolute;
@@ -24,7 +28,7 @@ const Styled = {
     width: fit-content;
     top: 3px;
     right: 0px;
-    transform: translate(10px, -10px);
+    transform: translate(8px, -8px);
     padding: 3px 6px;
     margin-left: 15px;
     border-radius: 100px;
@@ -40,14 +44,17 @@ const CartIconWithCount = () => {
     });
     return result;
   };
+  console.log("basketCollection", basketCollection.length);
   return (
     <>
-      {basketCollection.length && (
+      {basketCollection.length > 0 && (
         <Styled.LocationIcon>
-          <Styled.IconWrapper>
-            <CartIcon />
-            <Styled.CountWrapper>{cartCounter()}</Styled.CountWrapper>
-          </Styled.IconWrapper>
+          <NavLink to={"/cart"}>
+            <Styled.IconWrapper>
+              <CartIcon />
+              <Styled.CountWrapper>{cartCounter()}</Styled.CountWrapper>
+            </Styled.IconWrapper>
+          </NavLink>
         </Styled.LocationIcon>
       )}
     </>

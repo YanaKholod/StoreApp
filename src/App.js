@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Menu from "./components/Menu";
 import AboutUs from "./pages/AboutUs";
 import Login from "./pages/Login";
@@ -29,12 +29,13 @@ function App() {
           </div>
           <div>
             <Routes>
-              <Route path="/" exact={true} element={<HomePage />} />
+              <Route path="/main" exact={true} element={<HomePage />} />
               <Route path="/catalog" element={<Shop />} />
               <Route path="/aboutUs" element={<AboutUs />} />
               <Route path="/login" element={<Login />} />
               <Route path="/signup" element={<SignUp />} />
               <Route path="/cart" element={<Cart />} />
+              <Route path="*" element={<Navigate to="/main" />} />
             </Routes>
           </div>
         </div>

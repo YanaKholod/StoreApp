@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import Modal from "../Modal";
-
+import queryString from "query-string";
 const Styled = {
   CardWrapper: styled.div`
     display: flex;
@@ -73,9 +74,18 @@ const Styled = {
   `,
 };
 
-const ShopItemCard = ({ item, handleItemToBasket }) => {
+const ShopItemCard = ({ item, handleItemToBasket, activeItemId }) => {
   const [showModal, setShowModal] = useState(false);
   const [isActive, setIsActive] = useState(false);
+  const history = useNavigate();
+  const location = useLocation();
+  const parsed = queryString.parse(location.search);
+
+  useEffect(() => {
+    if (activeItemId === item.id.toString()) {
+      setShowModal(true);
+    }
+  }, [activeItemId]);
 
   const handleAddItemToBasket = (item) => {
     handleItemToBasket(item);
@@ -85,12 +95,50 @@ const ShopItemCard = ({ item, handleItemToBasket }) => {
     }, 1000);
   };
 
+  const openModal = () => {
+    setShowModal(true);
+    const usedQuery = queryParamsData();
+    history({
+      pathname: location.pathname,
+      search: `?${usedQuery}&itemsId=${item.id}`,
+    });
+  };
+
+  const closeModal = () => {
+    setShowModal(false);
+    const usedQuery = queryParamsData(true);
+    history({
+      pathname: location.pathname,
+      search: usedQuery,
+    });
+  };
+
+  const queryParamsData = (deleteLastParam = false) => {
+    let queryString = "";
+    if (deleteLastParam) {
+      const totalQueryLength = Object.keys(parsed).length;
+      const queryParamsItems = Object.keys(parsed);
+      queryParamsItems.forEach((paramName, index) => {
+        if (index === totalQueryLength - 1) {
+          return;
+        } else {
+          queryString += `${paramName}=${parsed[paramName]}`;
+        }
+      });
+    } else {
+      for (let key in parsed) {
+        queryString += `${key}=${parsed[key]}`;
+      }
+    }
+    return queryString;
+  };
+
   return (
     <>
       <Styled.CardWrapper key={item.id}>
         <Styled.WrapperInfo
           onClick={() => {
-            setShowModal(true);
+            openModal();
           }}
         >
           <Styled.H2>{item.title} </Styled.H2>
@@ -117,7 +165,9 @@ const ShopItemCard = ({ item, handleItemToBasket }) => {
         <Modal
           item={item}
           purchaseAction={handleAddItemToBasket}
-          onModalClose={() => setShowModal(false)}
+          onModalClose={() => {
+            closeModal();
+          }}
         />
       )}
     </>

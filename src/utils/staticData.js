@@ -2,7 +2,7 @@ export const menuData = [
   {
     id: 0,
     title: "Main",
-    link: "/",
+    link: "/main",
     isActive: false,
   },
   {

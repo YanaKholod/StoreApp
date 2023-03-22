@@ -4,6 +4,7 @@ import { fetchNewClothes } from "../store/shopSlice";
 import { addItemToBasket } from "../store/shopSlice";
 import ShopItemCard from "./shopComponents/ShopItemCard";
 import styled from "styled-components";
+import { useSearchParams } from "react-router-dom";
 
 const Styled = {
   NewCollectionWrapper: styled.div`
@@ -24,6 +25,7 @@ const Styled = {
 const NewClothes = () => {
   const newClothesCatalog = useSelector((state) => state.newClothes);
   const dispatch = useDispatch();
+  const [searchParams, setSearchParams] = useSearchParams();
 
   useEffect(() => {
     dispatch(fetchNewClothes());
@@ -32,6 +34,7 @@ const NewClothes = () => {
   const handleItemToBasket = (item) => {
     dispatch(addItemToBasket(item));
   };
+
   return (
     <div>
       <Styled.Title>New!</Styled.Title>
@@ -49,6 +52,7 @@ const NewClothes = () => {
                 price: item.price,
               }}
               handleItemToBasket={handleItemToBasket}
+              activeItemId={searchParams.get("itemsId")}
             />
           );
         })}

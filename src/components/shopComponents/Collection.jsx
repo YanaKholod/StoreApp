@@ -4,6 +4,7 @@ import { fetchCatalog } from "../../store/shopSlice";
 import { addItemToBasket } from "../../store/shopSlice";
 import ShopItemCard from "./ShopItemCard";
 import styled from "styled-components";
+import { useSearchParams } from "react-router-dom";
 
 const Styled = {
   CollectionWrapper: styled.div`
@@ -21,6 +22,7 @@ const Styled = {
 const Collection = () => {
   const { catalog, queryParams } = useSelector((state) => state);
   const dispatch = useDispatch();
+  const [searchParams, setSearchParams] = useSearchParams();
 
   useEffect(() => {
     if (!catalog.length) {
@@ -51,6 +53,7 @@ const Collection = () => {
               price: item.price,
             }}
             handleItemToBasket={handleItemToBasket}
+            activeItemId={searchParams.get("itemsId")}
           />
         );
       })}

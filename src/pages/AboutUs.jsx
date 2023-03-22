@@ -112,15 +112,6 @@ const AboutUs = () => {
                   {item.icon}
                 </Styled.Link>
               ))}
-              {/* <Styled.Link>
-                <InstaIcon />
-              </Styled.Link>
-              <Styled.Link>
-                <TwitterIcon />
-              </Styled.Link>
-              <Styled.Link>
-                <FacebookIcon />
-              </Styled.Link> */}
             </Styled.SocialIcons>
           </Styled.SecondImg>
         </Styled.ImgContent>
