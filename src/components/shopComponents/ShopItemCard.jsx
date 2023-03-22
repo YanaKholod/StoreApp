@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import Modal from "../Modal";
-
+import queryString from "query-string";
 const Styled = {
   CardWrapper: styled.div`
     display: flex;
@@ -79,12 +79,13 @@ const ShopItemCard = ({ item, handleItemToBasket, activeItemId }) => {
   const [isActive, setIsActive] = useState(false);
   const history = useNavigate();
   const location = useLocation();
+  const parsed = queryString.parse(location.search);
 
   useEffect(() => {
-    if (activeItemId === item.id) {
+    if (activeItemId === item.id.toString()) {
       setShowModal(true);
     }
-  }, []);
+  }, [activeItemId]);
 
   const handleAddItemToBasket = (item) => {
     handleItemToBasket(item);
@@ -96,17 +97,40 @@ const ShopItemCard = ({ item, handleItemToBasket, activeItemId }) => {
 
   const openModal = () => {
     setShowModal(true);
+    const usedQuery = queryParamsData();
     history({
       pathname: location.pathname,
-      search: `?itemsId=${item.id}`,
+      search: `?${usedQuery}&itemsId=${item.id}`,
     });
   };
+
   const closeModal = () => {
     setShowModal(false);
+    const usedQuery = queryParamsData(true);
     history({
       pathname: location.pathname,
-      search: ``,
+      search: usedQuery,
     });
+  };
+
+  const queryParamsData = (deleteLastParam = false) => {
+    let queryString = "";
+    if (deleteLastParam) {
+      const totalQueryLength = Object.keys(parsed).length;
+      const queryParamsItems = Object.keys(parsed);
+      queryParamsItems.forEach((paramName, index) => {
+        if (index === totalQueryLength - 1) {
+          return;
+        } else {
+          queryString += `${paramName}=${parsed[paramName]}`;
+        }
+      });
+    } else {
+      for (let key in parsed) {
+        queryString += `${key}=${parsed[key]}`;
+      }
+    }
+    return queryString;
   };
 
   return (

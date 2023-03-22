@@ -4,7 +4,7 @@ import { fetchNewClothes } from "../store/shopSlice";
 import { addItemToBasket } from "../store/shopSlice";
 import ShopItemCard from "./shopComponents/ShopItemCard";
 import styled from "styled-components";
-import { useSearchParams, useLocation } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 
 const Styled = {
   NewCollectionWrapper: styled.div`

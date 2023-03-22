@@ -44,9 +44,10 @@ const CartIconWithCount = () => {
     });
     return result;
   };
+  console.log("basketCollection", basketCollection.length);
   return (
     <>
-      {basketCollection.length && (
+      {basketCollection.length > 0 && (
         <Styled.LocationIcon>
           <NavLink to={"/cart"}>
             <Styled.IconWrapper>
