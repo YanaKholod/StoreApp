@@ -44,7 +44,6 @@ const CartIconWithCount = () => {
     });
     return result;
   };
-  console.log("basketCollection", basketCollection.length);
   return (
     <>
       {basketCollection.length > 0 && (

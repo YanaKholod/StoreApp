@@ -97,5 +97,3 @@ export const newClothes = [
     price: 87,
   },
 ];
-
-//Yana Kholod
