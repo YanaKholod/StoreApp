@@ -10,11 +10,15 @@ const Styled = {
   CollectionWrapper: styled.div`
     display: grid;
     grid-template-columns: repeat(5, 1fr);
+    justify-items: center;
     @media (max-width: 1300px) {
       display: flex;
       width: 100%;
       flex-wrap: wrap;
       justify-content: center;
+    }
+    @media (min-width: 2800px) {
+      margin: 0 15%;
     }
   `,
 };

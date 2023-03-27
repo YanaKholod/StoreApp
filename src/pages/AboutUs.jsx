@@ -25,7 +25,7 @@ const Styled = {
     margin-top: 40px;
     @media (max-width: 780px) {
       flex-direction: column;
-    } ;
+    }
   `,
   TextContent: styled.div`
     display: flex;
@@ -40,7 +40,13 @@ const Styled = {
         width: 250px;
         font-size: 18px;
       }
-    } ;
+    }
+    @media (min-width: 1500px) {
+      span {
+        width: 700px;
+        font-size: 32px;
+      }
+    }
   `,
   ImgContent: styled.div`
     width: 100%;

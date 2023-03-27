@@ -27,6 +27,10 @@ const Styled = {
       isActive
         ? "background: #7f5feb; color: #dfdeee; box-shadow: #61228b 0 -3px 6px inset; "
         : ""}
+
+    @media (min-width: 1500px) {
+      font-size: 25px;
+    }
   `,
 };
 
